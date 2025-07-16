@@ -1,10 +1,14 @@
 
 import { useState, useEffect } from 'react';
+import { Navigation } from '@/components/Navigation';
 import { Hero } from '@/components/Hero';
 import { Advantages } from '@/components/Advantages';
+import { About } from '@/components/About';
 import { EligibilityChecker } from '@/components/EligibilityChecker';
 import { ExpertCTA } from '@/components/ExpertCTA';
+import { Testimonials } from '@/components/Testimonials';
 import { FAQ } from '@/components/FAQ';
+import { Footer } from '@/components/Footer';
 import { StickyBar } from '@/components/StickyBar';
 
 const Index = () => {
@@ -27,11 +31,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-off-white">
+      {/* Navigation */}
+      <Navigation onCheckEligibility={scrollToEligibility} />
+      
       {/* Hero Section */}
       <Hero onCheckEligibility={scrollToEligibility} />
       
       {/* Advantages Section */}
       <Advantages />
+      
+      {/* About Section */}
+      <About />
       
       {/* Eligibility Checker */}
       <div id="eligibility-checker">
@@ -44,8 +54,14 @@ const Index = () => {
       {/* Expert CTA - Only show when eligible */}
       {isEligible && <ExpertCTA />}
       
+      {/* Testimonials Section */}
+      <Testimonials />
+      
       {/* FAQ Section */}
       <FAQ />
+      
+      {/* Footer */}
+      <Footer />
       
       {/* Sticky CTA Bar */}
       <StickyBar onCheckEligibility={scrollToEligibility} />
