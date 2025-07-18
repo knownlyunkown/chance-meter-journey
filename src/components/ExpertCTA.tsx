@@ -57,10 +57,10 @@ export const ExpertCTA = () => {
                   👨‍💼
                 </div>
                 <h3 className="text-2xl font-satoshi font-bold text-white mb-2">
-                  Arjun Verma
+                  Akshar Tank
                 </h3>
                 <p className="text-white/80 mb-4">
-                  Germany Immigration Specialist
+                  Founder, UNI 360°
                 </p>
                 <div className="flex justify-center gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
@@ -72,7 +72,7 @@ export const ExpertCTA = () => {
               <div className="space-y-4 text-white/90">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-sage-green flex-shrink-0" />
-                  <span className="text-sm">5+ years helping students succeed in Germany</span>
+                  <span className="text-sm">15+ years of experience helping students navigate education systems worldwide</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-sage-green flex-shrink-0" />

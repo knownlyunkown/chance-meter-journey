@@ -50,45 +50,60 @@ export const QuestionStep = ({
   totalSteps
 }: QuestionStepProps) => {
   const progressPercentage = (currentStep / totalSteps) * 100;
+  const stepsRemaining = totalSteps - currentStep;
+  
+  const getProgressMessage = () => {
+    if (stepsRemaining === 0) return "All done!";
+    if (stepsRemaining === 1) return "Just 1 more step!";
+    if (stepsRemaining <= 3) return "Almost done!";
+    return `${stepsRemaining} more steps to go!`;
+  };
 
   return (
     <div className="max-w-2xl mx-auto">
-      {/* Progress Bar */}
+      {/* Enhanced Progress Bar */}
       <div className="mb-8">
-        <div className="flex justify-between items-center mb-2">
-          <span className="text-sm text-gunmetal/60">
+        <div className="flex justify-between items-center mb-3">
+          <span className="text-sm font-medium text-gunmetal">
             Question {currentStep} of {totalSteps}
           </span>
-          <span className="text-sm text-gunmetal/60">
-            {Math.round(progressPercentage)}% complete
+          <span className="text-sm font-medium text-tigers-eye">
+            {getProgressMessage()}
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-2">
+        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
           <div 
-            className="bg-sage-green h-2 rounded-full transition-all duration-300 ease-out"
+            className="h-3 rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-sage-green to-tigers-eye"
             style={{ width: `${progressPercentage}%` }}
           />
+        </div>
+        <div className="text-center mt-2">
+          <span className="text-xs text-gunmetal/60">
+            {Math.round(progressPercentage)}% complete
+          </span>
         </div>
       </div>
 
       {/* Question Card */}
-      <div className="bg-white rounded-chancenkarte p-8 shadow-sm mb-8 animate-fade-in-up">
-        <h3 className="text-xl font-satoshi font-bold text-gunmetal mb-6">
+      <div className="bg-white rounded-chancenkarte p-8 shadow-lg border border-sage-green/10 mb-8 animate-fade-in-up">
+        <h3 className="text-xl font-satoshi font-bold text-gunmetal mb-8 leading-relaxed">
           {question.question}
         </h3>
 
         {question.type === 'radio' ? (
           <RadioGroup value={currentAnswer} onValueChange={onAnswerChange}>
-            <div className="space-y-3">
+            <div className="space-y-4">
               {question.options.map((option, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <RadioGroupItem value={option} id={`option-${index}`} />
-                  <Label 
-                    htmlFor={`option-${index}`} 
-                    className="text-gunmetal cursor-pointer flex-1"
-                  >
-                    {option}
-                  </Label>
+                <div key={index} className="group">
+                  <div className="flex items-center space-x-4 p-4 rounded-lg border-2 border-transparent hover:border-sage-green/30 hover:bg-sage-green/5 transition-all duration-200 cursor-pointer">
+                    <RadioGroupItem value={option} id={`option-${index}`} />
+                    <Label 
+                      htmlFor={`option-${index}`} 
+                      className="text-gunmetal cursor-pointer flex-1 font-medium leading-relaxed"
+                    >
+                      {option}
+                    </Label>
+                  </div>
                 </div>
               ))}
             </div>
@@ -98,7 +113,7 @@ export const QuestionStep = ({
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="outline" 
-                className="w-full justify-between text-left"
+                className="w-full justify-between text-left h-14 text-base border-2 hover:border-sage-green/50"
               >
                 {currentAnswer || 'Select your country...'}
                 <ChevronRight className="h-4 w-4" />
@@ -109,7 +124,7 @@ export const QuestionStep = ({
                 <DropdownMenuItem 
                   key={index}
                   onClick={() => onAnswerChange(option)}
-                  className="cursor-pointer"
+                  className="cursor-pointer py-3 px-4 hover:bg-sage-green/10"
                 >
                   {option}
                 </DropdownMenuItem>
@@ -125,7 +140,7 @@ export const QuestionStep = ({
           variant="outline"
           onClick={onPrevious}
           disabled={!canGoPrevious}
-          className="flex items-center gap-2"
+          className="flex items-center gap-2 h-12 px-6 border-2"
         >
           <ChevronLeft className="w-4 h-4" />
           Previous
@@ -134,7 +149,7 @@ export const QuestionStep = ({
         <Button
           onClick={onNext}
           disabled={!canGoNext}
-          className="bg-sage-green hover:bg-sage-green/90 text-white flex items-center gap-2"
+          className="bg-tigers-eye hover:bg-tigers-eye/90 text-white flex items-center gap-2 h-12 px-8 font-semibold"
         >
           Next
           <ChevronRight className="w-4 h-4" />

@@ -35,6 +35,12 @@ export const Navigation = ({ onCheckEligibility }: NavigationProps) => {
                 About
               </button>
               <button
+                onClick={() => console.log('Navigate to UNI 360°')}
+                className="text-gunmetal hover:text-tigers-eye px-3 py-2 text-sm font-medium transition-colors"
+              >
+                UNI 360°
+              </button>
+              <button
                 onClick={() => scrollToSection('faq')}
                 className="text-gunmetal hover:text-tigers-eye px-3 py-2 text-sm font-medium transition-colors"
               >
@@ -46,6 +52,16 @@ export const Navigation = ({ onCheckEligibility }: NavigationProps) => {
               >
                 Check Eligibility
               </button>
+            </div>
+          </div>
+
+          {/* UNI 360° Branding */}
+          <div className="hidden md:flex items-center space-x-4">
+            <div className="text-right">
+              <div className="text-lg font-satoshi font-bold text-gunmetal">
+                UNI 360°
+              </div>
+              <div className="text-xs text-gunmetal/60">Study Abroad Companion</div>
             </div>
           </div>
 
@@ -69,6 +85,12 @@ export const Navigation = ({ onCheckEligibility }: NavigationProps) => {
                 className="text-gunmetal hover:text-tigers-eye block px-3 py-2 text-base font-medium w-full text-left transition-colors"
               >
                 About
+              </button>
+              <button
+                onClick={() => console.log('Navigate to UNI 360°')}
+                className="text-gunmetal hover:text-tigers-eye block px-3 py-2 text-base font-medium w-full text-left transition-colors"
+              >
+                UNI 360°
               </button>
               <button
                 onClick={() => scrollToSection('faq')}

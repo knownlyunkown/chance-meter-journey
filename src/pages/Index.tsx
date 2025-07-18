@@ -10,6 +10,7 @@ import { Testimonials } from '@/components/Testimonials';
 import { FAQ } from '@/components/FAQ';
 import { Footer } from '@/components/Footer';
 import { StickyBar } from '@/components/StickyBar';
+import { Uni360Popup } from '@/components/Uni360Popup';
 
 const Index = () => {
   const [eligibilityScore, setEligibilityScore] = useState(0);
@@ -31,6 +32,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-off-white">
+      {/* UNI 360° Popup */}
+      <Uni360Popup />
+      
       {/* Navigation */}
       <Navigation onCheckEligibility={scrollToEligibility} />
       
