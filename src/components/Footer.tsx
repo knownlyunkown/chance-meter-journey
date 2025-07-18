@@ -14,7 +14,7 @@ export const Footer = () => {
           <div className="text-center md:text-left">
             <p className="text-white/80 text-sm mb-2">A product of</p>
             <h3 className="text-2xl font-satoshi font-bold text-white">
-              UNI 360
+              UNI 360°
             </h3>
           </div>
 
@@ -65,7 +65,7 @@ export const Footer = () => {
               </a>
             </div>
             <p className="text-white/60 text-xs">
-              © 2024 UNI 360. All rights reserved.
+              © 2024 UNI 360°. All rights reserved.
             </p>
           </div>
         </div>

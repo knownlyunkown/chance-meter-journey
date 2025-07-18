@@ -34,12 +34,12 @@ export const Navigation = ({ onCheckEligibility }: NavigationProps) => {
               >
                 About
               </button>
-              <button
-                onClick={() => console.log('Navigate to UNI 360°')}
+              <a
+                href="/uni360"
                 className="text-gunmetal hover:text-tigers-eye px-3 py-2 text-sm font-medium transition-colors"
               >
                 UNI 360°
-              </button>
+              </a>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="text-gunmetal hover:text-tigers-eye px-3 py-2 text-sm font-medium transition-colors"
@@ -86,12 +86,12 @@ export const Navigation = ({ onCheckEligibility }: NavigationProps) => {
               >
                 About
               </button>
-              <button
-                onClick={() => console.log('Navigate to UNI 360°')}
+              <a
+                href="/uni360"
                 className="text-gunmetal hover:text-tigers-eye block px-3 py-2 text-base font-medium w-full text-left transition-colors"
               >
                 UNI 360°
-              </button>
+              </a>
               <button
                 onClick={() => scrollToSection('faq')}
                 className="text-gunmetal hover:text-tigers-eye block px-3 py-2 text-base font-medium w-full text-left transition-colors"

@@ -1,7 +1,10 @@
 
+import { useState } from 'react';
 import { Calendar, CheckCircle, Star } from 'lucide-react';
+import { BookingForm } from './BookingForm';
 
 export const ExpertCTA = () => {
+  const [isBookingFormOpen, setIsBookingFormOpen] = useState(false);
   return (
     <section className="py-16 lg:py-24 bg-gradient-to-r from-sage-green to-sage-green/80 animate-fade-in-up">
       <div className="container mx-auto px-4">
@@ -29,7 +32,10 @@ export const ExpertCTA = () => {
                 </p>
               </div>
               
-              <button className="bg-tigers-eye hover:bg-tigers-eye/90 text-white px-12 py-4 rounded-chancenkarte text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center gap-3">
+              <button 
+                onClick={() => setIsBookingFormOpen(true)}
+                className="bg-tigers-eye hover:bg-tigers-eye/90 text-white px-12 py-4 rounded-chancenkarte text-lg font-semibold transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center gap-3"
+              >
                 <Calendar className="w-5 h-5" />
                 Book My Call
               </button>
@@ -93,6 +99,11 @@ export const ExpertCTA = () => {
           </div>
         </div>
       </div>
+      
+      <BookingForm 
+        isOpen={isBookingFormOpen}
+        onClose={() => setIsBookingFormOpen(false)}
+      />
     </section>
   );
 };
