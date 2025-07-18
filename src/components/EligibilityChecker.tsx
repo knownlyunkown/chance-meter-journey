@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { Check, AlertCircle, ExternalLink } from 'lucide-react';
+import { Check, AlertCircle, ExternalLink, PartyPopper } from 'lucide-react';
 import { QuestionStep } from './QuestionStep';
 
 interface EligibilityCheckerProps {
@@ -19,6 +19,7 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
   const [currentStep, setCurrentStep] = useState(1);
   const [answers, setAnswers] = useState<Record<string, string>>({});
   const [showResults, setShowResults] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const questions: Question[] = [
     {
@@ -200,6 +201,9 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
       setCurrentStep(prev => prev + 1);
     } else {
       setShowResults(true);
+      setShowConfetti(true);
+      // Hide confetti after 3 seconds
+      setTimeout(() => setShowConfetti(false), 3000);
     }
   };
 
@@ -216,10 +220,17 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
 
   if (showResults) {
     return (
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-cb10 to-pale-mint">
+      <section className="py-12 lg:py-16 bg-gradient-to-br from-cb10 to-pale-mint">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <div className="bg-white rounded-chancenkarte p-8 shadow-lg animate-fade-in-up">
+            <div className="bg-white rounded-chancenkarte p-8 shadow-lg animate-fade-in-up relative overflow-hidden">
+              {/* Confetti Animation */}
+              {showConfetti && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="text-6xl animate-bounce">🎉</div>
+                </div>
+              )}
+              
               <div className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
                 isEligible ? 'bg-sage-green/20' : 'bg-yellow-100'
               }`}>
@@ -231,18 +242,30 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
               </div>
               
               <h3 className="text-2xl font-satoshi font-bold text-gunmetal mb-4">
-                {isEligible ? "Congratulations! You're eligible." : "You're close — improve this to proceed"}
+                {isEligible 
+                  ? "🎉 Congratulations! You're likely eligible for the Chancenkarte!" 
+                  : "You're on the right track — let's optimize your application"
+                }
               </h3>
               
               <p className="text-gunmetal/70 mb-6">
-                Your eligibility score: {score} points
+                Your eligibility score: <span className="font-bold text-tigers-eye">{score} points</span>
               </p>
               
-              {isEligible && (
-                <button className="bg-tigers-eye hover:bg-tigers-eye/90 text-white px-8 py-3 rounded-chancenkarte font-semibold transition-all duration-300">
-                  Get Expert Guidance
-                </button>
-              )}
+              <div className="space-y-4">
+                {isEligible && (
+                  <button className="bg-tigers-eye hover:bg-tigers-eye/90 text-white px-8 py-3 rounded-chancenkarte font-semibold transition-all duration-300 w-full">
+                    Book a Call with an Expert
+                  </button>
+                )}
+                
+                <p className="text-sm text-gunmetal/60">
+                  {isEligible 
+                    ? "Ready to take the next step? Our experts will guide you through the application process."
+                    : "Don't worry! Our experts can help you improve your chances and explore alternative pathways."
+                  }
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -251,7 +274,7 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-cb10 to-pale-mint">
+    <section className="py-12 lg:py-16 bg-gradient-to-br from-cb10 to-pale-mint">
       <div className="container mx-auto px-4">
         {/* UNI 360 Branding Header */}
         <div className="flex justify-between items-start mb-8">
@@ -276,11 +299,11 @@ export const EligibilityChecker = ({ onScoreChange, hasStarted }: EligibilityChe
           </div>
         </div>
 
-        <div className="text-center mb-12">
-          <h2 className="text-3xl lg:text-5xl font-satoshi font-bold text-gunmetal mb-6">
+        <div className="text-center mb-8">
+          <h2 className="text-3xl lg:text-4xl font-satoshi font-bold text-gunmetal mb-4">
             Tell us about you — we'll do the rest.
           </h2>
-          <p className="text-xl text-gunmetal/70">
+          <p className="text-lg text-gunmetal/70">
             Answer these questions to check your Chancenkarte eligibility.
           </p>
         </div>

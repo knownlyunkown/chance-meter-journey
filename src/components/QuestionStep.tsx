@@ -54,52 +54,48 @@ export const QuestionStep = ({
   
   const getProgressMessage = () => {
     if (stepsRemaining === 0) return "All done!";
-    if (stepsRemaining === 1) return "Just 1 more step!";
+    if (stepsRemaining === 1) return "Final step!";
+    if (stepsRemaining === 2) return "Almost there!";
     if (stepsRemaining <= 3) return "Almost done!";
     return `${stepsRemaining} more steps to go!`;
   };
 
   return (
-    <div className="max-w-2xl mx-auto">
-      {/* Enhanced Progress Bar */}
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-3">
+    <div className="max-w-xl mx-auto">
+      {/* Compact Progress Bar */}
+      <div className="mb-6">
+        <div className="flex justify-between items-center mb-2">
           <span className="text-sm font-medium text-gunmetal">
-            Question {currentStep} of {totalSteps}
+            {currentStep} of {totalSteps}
           </span>
           <span className="text-sm font-medium text-tigers-eye">
             {getProgressMessage()}
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+        <div className="w-full bg-gray-200 rounded-full h-2 overflow-hidden">
           <div 
-            className="h-3 rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-sage-green to-tigers-eye"
+            className="h-2 rounded-full transition-all duration-500 ease-out bg-gradient-to-r from-sage-green to-tigers-eye"
             style={{ width: `${progressPercentage}%` }}
           />
         </div>
-        <div className="text-center mt-2">
-          <span className="text-xs text-gunmetal/60">
-            {Math.round(progressPercentage)}% complete
-          </span>
-        </div>
       </div>
 
-      {/* Question Card */}
-      <div className="bg-white rounded-chancenkarte p-8 shadow-lg border border-sage-green/10 mb-8 animate-fade-in-up">
-        <h3 className="text-xl font-satoshi font-bold text-gunmetal mb-8 leading-relaxed">
+      {/* Compact Question Card */}
+      <div className="bg-white rounded-chancenkarte p-6 shadow-lg border border-sage-green/10 mb-6">
+        <h3 className="text-lg font-satoshi font-bold text-gunmetal mb-6 leading-relaxed">
           {question.question}
         </h3>
 
         {question.type === 'radio' ? (
           <RadioGroup value={currentAnswer} onValueChange={onAnswerChange}>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {question.options.map((option, index) => (
                 <div key={index} className="group">
-                  <div className="flex items-center space-x-4 p-4 rounded-lg border-2 border-transparent hover:border-sage-green/30 hover:bg-sage-green/5 transition-all duration-200 cursor-pointer">
+                  <div className="flex items-center space-x-3 p-3 rounded-lg border border-transparent hover:border-sage-green/30 hover:bg-sage-green/5 transition-all duration-200 cursor-pointer">
                     <RadioGroupItem value={option} id={`option-${index}`} />
                     <Label 
                       htmlFor={`option-${index}`} 
-                      className="text-gunmetal cursor-pointer flex-1 font-medium leading-relaxed"
+                      className="text-gunmetal cursor-pointer flex-1 font-medium text-sm leading-relaxed"
                     >
                       {option}
                     </Label>
@@ -113,7 +109,7 @@ export const QuestionStep = ({
             <DropdownMenuTrigger asChild>
               <Button 
                 variant="outline" 
-                className="w-full justify-between text-left h-14 text-base border-2 hover:border-sage-green/50"
+                className="w-full justify-between text-left h-12 text-sm border-2 hover:border-sage-green/50"
               >
                 {currentAnswer || 'Select your country...'}
                 <ChevronRight className="h-4 w-4" />
@@ -124,7 +120,7 @@ export const QuestionStep = ({
                 <DropdownMenuItem 
                   key={index}
                   onClick={() => onAnswerChange(option)}
-                  className="cursor-pointer py-3 px-4 hover:bg-sage-green/10"
+                  className="cursor-pointer py-2 px-3 hover:bg-sage-green/10"
                 >
                   {option}
                 </DropdownMenuItem>
@@ -134,13 +130,13 @@ export const QuestionStep = ({
         )}
       </div>
 
-      {/* Navigation */}
+      {/* Compact Navigation */}
       <div className="flex justify-between">
         <Button
           variant="outline"
           onClick={onPrevious}
           disabled={!canGoPrevious}
-          className="flex items-center gap-2 h-12 px-6 border-2"
+          className="flex items-center gap-2 h-10 px-4 border-2"
         >
           <ChevronLeft className="w-4 h-4" />
           Previous
@@ -149,7 +145,7 @@ export const QuestionStep = ({
         <Button
           onClick={onNext}
           disabled={!canGoNext}
-          className="bg-tigers-eye hover:bg-tigers-eye/90 text-white flex items-center gap-2 h-12 px-8 font-semibold"
+          className="bg-tigers-eye hover:bg-tigers-eye/90 text-white flex items-center gap-2 h-10 px-6 font-semibold"
         >
           Next
           <ChevronRight className="w-4 h-4" />
